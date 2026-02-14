@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Camera, Video, Play, X } from "lucide-react";
+import { Camera, Video, Play, X, ChevronDown } from "lucide-react";
 import Layout from "../components/Layout";
 import gallery1 from "../assets/gallery-1.jpg";
 import gallery2 from "../assets/gallery-2.jpg";
@@ -17,41 +17,70 @@ const photos = [
   { src: gallery3, alt: "Ramana Maharshi portrait" },
 ];
 
-const videoCategories = [
-  {
-    year: "2025",
-    title: "On Occasion of 145th Birth Anniversary",
-    link: "https://sriarunachalaramana.wixsite.com/mysite-1/copy-of-2023",
-  },
+type VideoItem = {
+  id: string;
+  title: string;
+  date: string;
+};
+
+type VideoYear = {
+  year: string;
+  subtitle: string;
+  videos: VideoItem[];
+};
+
+const videosByYear: VideoYear[] = [
   {
     year: "2024",
-    title: "On Occasion of 144th Birth Anniversary",
-    link: "https://sriarunachalaramana.wixsite.com/mysite-1/copy-of-occasion-of-143-birth-anniver",
+    subtitle: "On Occasion of 145th Birth Anniversary",
+    videos: [
+      { id: "2Qa8bNKMltA", title: "పౌర్ణమి అన్నప్రసాద వితరణ - కార్తీకపౌర్ణమి", date: "15/11/2024" },
+      { id: "iKGAyrgJNpk", title: "తిరుత్తని సుబ్రహ్మణ్యేశ్వర స్వామి - అన్నప్రసాద వితరణ", date: "29/10/2024" },
+      { id: "tJexZN6W-qw", title: "పౌర్ణమి సేవా వెలుగులు - అన్నప్రసాద వితరణ", date: "17/10/2024" },
+      { id: "h0GmglPH6to", title: "నవరాత్రులు కుంకుమ పూజలు", date: "12/10/2024" },
+      { id: "1aXrBIxI5RE", title: "స్వామిమలై సుబ్రహ్మణ్యేశ్వర స్వామి - అన్నప్రసాద వితరణ", date: "23/09/2024" },
+      { id: "RSGwh_8tuJw", title: "పౌర్ణమి అన్నప్రసాద వితరణ - రాజమహేంద్రవరం", date: "18/09/2024" },
+      { id: "AhnpGyQQXB8", title: "పునర్వసు రమణుల జన్మ నక్షత్రం - పుష్కర ఘాట్", date: "30/08/2024" },
+      { id: "n_kJe6mh3XA", title: "పౌర్ణమి అన్నప్రసాద వితరణ - పీఠం & గెయిల్ ఆఫీస్", date: "19/08/2024" },
+      { id: "luopl68LUf8", title: "తిరుచెందూర్ సుబ్రహ్మణ్యస్వామి - అన్నప్రసాద వితరణ", date: "10/08/2024" },
+    ],
   },
   {
     year: "2023",
-    title: "On Occasion of 143rd Birth Anniversary",
-    link: "https://sriarunachalaramana.wixsite.com/mysite-1/copy-of-occasion-of-142-birth-anniver",
+    subtitle: "On Occasion of 143rd Birth Anniversary",
+    videos: [
+      { id: "paldG3yp_r8", title: "భగవాన్ రమణుల 143వ పుణ్యతిధి వేడుకలు", date: "30/12/2022" },
+    ],
   },
   {
     year: "2022",
-    title: "On Occasion of 142nd Birth Anniversary",
-    link: "https://sriarunachalaramana.wixsite.com/mysite-1/occasion-of-142-birth-anniversary",
+    subtitle: "On Occasion of 142nd Birth Anniversary",
+    videos: [
+      { id: "t2NkP0db9Fk", title: "భగవాన్ రమణుల 142వ పుణ్యతిధి జయంతి వేడుకలు", date: "30/12/2021" },
+    ],
   },
   {
     year: "2021",
-    title: "On Occasion of 141st Birth Anniversary",
-    link: "https://sriarunachalaramana.wixsite.com/mysite-1/copy-of-occasion-of-140th-birth-ann-1",
+    subtitle: "On Occasion of 141st Birth Anniversary",
+    videos: [
+      { id: "dv0iKLBXARU", title: "భగవాన్ రమణులు 141వ పుణ్యతిధి జయంతి వేడుకలు", date: "30/12/2020" },
+    ],
   },
   {
     year: "2019-2020",
-    title: "Events & Celebrations",
-    link: "https://sriarunachalaramana.wixsite.com/mysite-1/2019-2020",
+    subtitle: "Events & Celebrations",
+    videos: [
+      { id: "XdWQQEIFINE", title: "అన్న ప్రసాద వితరణ - కడప జిల్లా", date: "30/11/2020" },
+      { id: "pzrwgaN80cE", title: "పౌర్ణమి అన్నప్రసాద వితరణ", date: "01/10/2020" },
+      { id: "mbM6OSi8nLQ", title: "కరోనా కాలం - అన్నార్తుల సేవ", date: "02/09/2020" },
+    ],
   },
 ];
 
 const Media = () => {
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [expandedYear, setExpandedYear] = useState<string>("2024");
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   return (
     <Layout>
@@ -79,7 +108,7 @@ const Media = () => {
             <p className="text-muted-foreground font-body">Moments from our spiritual journey and events</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {photos.map((photo, i) => (
               <motion.div
                 key={i}
@@ -98,17 +127,6 @@ const Media = () => {
               </motion.div>
             ))}
           </div>
-
-          <div className="text-center">
-            <a
-              href="https://sriarunachalaramana.wixsite.com/mysite-1/photos"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-saffron text-primary-foreground font-body font-medium rounded-lg hover:opacity-90 transition-opacity"
-            >
-              View All Photos <ExternalLink size={16} />
-            </a>
-          </div>
         </div>
       </section>
 
@@ -123,40 +141,82 @@ const Media = () => {
             <p className="text-muted-foreground font-body">Watch our event recordings organized by year</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {videoCategories.map((cat, i) => (
-              <motion.a
-                key={i}
-                href={cat.link}
-                target="_blank"
-                rel="noopener noreferrer"
+          <div className="space-y-4">
+            {videosByYear.map((yearGroup) => (
+              <motion.div
+                key={yearGroup.year}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={{ ...fadeInUp, visible: { ...fadeInUp.visible, transition: { duration: 0.6, delay: i * 0.08 } } }}
-                className="group bg-background rounded-2xl p-8 text-center border border-border hover:shadow-warm-lg transition-all hover:border-primary/30"
+                variants={fadeInUp}
+                className="bg-background rounded-2xl border border-border overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                  <Play className="text-primary" size={20} />
-                </div>
-                <h3 className="font-display text-2xl font-bold text-foreground mb-1">{cat.year}</h3>
-                <p className="text-muted-foreground font-body text-sm mb-3">{cat.title}</p>
-                <span className="inline-flex items-center gap-1 text-primary font-body text-sm font-medium">
-                  Watch <ExternalLink size={14} />
-                </span>
-              </motion.a>
-            ))}
-          </div>
+                {/* Year Header */}
+                <button
+                  onClick={() => setExpandedYear(expandedYear === yearGroup.year ? "" : yearGroup.year)}
+                  className="w-full flex items-center justify-between p-6 hover:bg-muted/50 transition-colors"
+                >
+                  <div className="text-left">
+                    <h3 className="font-display text-2xl font-bold text-foreground">{yearGroup.year}</h3>
+                    <p className="text-muted-foreground font-body text-sm">{yearGroup.subtitle}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-body text-muted-foreground bg-muted px-3 py-1 rounded-full">
+                      {yearGroup.videos.length} video{yearGroup.videos.length > 1 ? "s" : ""}
+                    </span>
+                    <ChevronDown
+                      className={`text-muted-foreground transition-transform duration-300 ${
+                        expandedYear === yearGroup.year ? "rotate-180" : ""
+                      }`}
+                      size={20}
+                    />
+                  </div>
+                </button>
 
-          <div className="text-center mt-10">
-            <a
-              href="https://www.youtube.com/channel/UCLMqQvtUNxmmAkoJEpQNlKw"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-primary font-body font-medium hover:underline"
-            >
-              Visit our YouTube Channel <ExternalLink size={16} />
-            </a>
+                {/* Videos Grid */}
+                {expandedYear === yearGroup.year && (
+                  <div className="px-6 pb-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {yearGroup.videos.map((video) => (
+                        <div key={video.id} className="rounded-xl overflow-hidden border border-border bg-card">
+                          {playingVideo === video.id ? (
+                            <div className="aspect-video">
+                              <iframe
+                                src={`https://www.youtube.com/embed/${video.id}?autoplay=1`}
+                                title={video.title}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="w-full h-full"
+                              />
+                            </div>
+                          ) : (
+                            <div
+                              className="aspect-video relative cursor-pointer group"
+                              onClick={() => setPlayingVideo(video.id)}
+                            >
+                              <img
+                                src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
+                                alt={video.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                              <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
+                                <div className="w-14 h-14 rounded-full bg-primary/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                  <Play className="text-primary-foreground ml-1" size={24} />
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          <div className="p-3">
+                            <p className="text-xs text-muted-foreground font-body mb-1">{video.date}</p>
+                            <p className="text-sm font-body text-foreground line-clamp-2">{video.title}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
