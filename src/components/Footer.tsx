@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguageHook";
+import { getTranslation } from "@/lib/translations";
 
 const Footer = () => {
+  const { language } = useLanguage();
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-16">
@@ -27,17 +30,17 @@ const Footer = () => {
             <h4 className="font-display text-lg font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {[
-                { to: "/teachings", label: "Teachings" },
-                { to: "/projects", label: "Projects" },
-                { to: "/donation", label: "Donate" },
-                { to: "/contact", label: "Contact Us" },
+                { to: "/teachings", labelKey: "teachings" as const },
+                { to: "/projects", labelKey: "projects" as const },
+                { to: "/donation", labelKey: "donation" as const },
+                { to: "/contact", labelKey: "contact" as const },
               ].map((link) => (
                 <li key={link.to}>
                   <Link
                     to={link.to}
                     className="text-muted-foreground hover:text-primary transition-colors text-sm font-body"
                   >
-                    {link.label}
+                    {getTranslation(link.labelKey, language)}
                   </Link>
                 </li>
               ))}

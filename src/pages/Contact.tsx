@@ -2,8 +2,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import Layout from "../components/Layout";
+import { useLanguage } from "@/hooks/useLanguageHook";
+import { getTranslation } from "@/lib/translations";
 
 const Contact = () => {
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
@@ -16,17 +19,22 @@ const Contact = () => {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-primary font-body text-sm tracking-[0.2em] uppercase mb-3">Reach Out</p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Contact Us</h1>
-            <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-              We'd love to hear from you. Get in touch with us for any queries or support.
-            </p>
-          </motion.div>
-        </div>
+      {/* Hero Banner */}
+      <section className="relative h-80 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e26612]/90 via-[#d45511]/80 to-[#a63d08]/80">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative text-center px-4 max-w-4xl"
+        >
+          <p className="text-white/90 font-body text-sm tracking-[0.3em] uppercase mb-4">
+            {getTranslation("reachOut", language)}
+          </p>
+          <h1 className="font-display text-3xl md:text-5xl lg:text-5xl font-bold text-white leading-tight mb-4">
+            {getTranslation("contact", language)}
+          </h1>
+          <p className="text-white font-body text-lg max-w-2xl mx-auto italic">{getTranslation("contactDesc", language)}</p>
+        </motion.div>
       </section>
 
       <section className="py-20 bg-background">
@@ -49,7 +57,9 @@ const Contact = () => {
                     <MapPin className="text-primary" size={20} />
                   </div>
                   <div>
-                    <h3 className="font-body font-semibold text-foreground mb-1">Address</h3>
+                    <h3 className="font-body font-semibold text-foreground mb-1">
+                      {getTranslation("address", language)}
+                    </h3>
                     <p className="text-muted-foreground font-body text-sm leading-relaxed">
                       D.No. 80-32-4/3, Opp. GAIL Office Road, Saradha Nagar,
                       A.V.Apparao Road, Rajahmahendravaram - 533103,
@@ -63,7 +73,9 @@ const Contact = () => {
                     <Mail className="text-primary" size={20} />
                   </div>
                   <div>
-                    <h3 className="font-body font-semibold text-foreground mb-1">Email</h3>
+                    <h3 className="font-body font-semibold text-foreground mb-1">
+                      {getTranslation("email", language)}
+                    </h3>
                     <a href="mailto:sriarunachalaramanatrust@gmail.com" className="text-primary font-body text-sm hover:underline">
                       sriarunachalaramanatrust@gmail.com
                     </a>
@@ -75,7 +87,9 @@ const Contact = () => {
                     <Phone className="text-primary" size={20} />
                   </div>
                   <div>
-                    <h3 className="font-body font-semibold text-foreground mb-1">Phone</h3>
+                    <h3 className="font-body font-semibold text-foreground mb-1">
+                      {getTranslation("phone", language)}
+                    </h3>
                     <a href="tel:9010755333" className="text-primary font-body text-sm hover:underline">
                       9010755333
                     </a>
@@ -91,15 +105,19 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div className="bg-card rounded-2xl p-8 border border-border shadow-warm">
-                <h3 className="font-display text-xl font-semibold text-foreground mb-6">Get In Touch</h3>
+                <h3 className="font-display text-xl font-semibold text-foreground mb-6">
+                  {getTranslation("getInTouch", language)}
+                </h3>
                 {submitted && (
                   <div className="mb-6 p-4 bg-primary/10 rounded-lg text-primary font-body text-sm">
-                    Thank you! Your message has been sent successfully.
+                    {getTranslation("thankYou", language)}
                   </div>
                 )}
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-sm font-body font-medium text-foreground mb-2">Name</label>
+                    <label className="block text-sm font-body font-medium text-foreground mb-2">
+                      {getTranslation("name", language)}
+                    </label>
                     <input
                       type="text"
                       required
@@ -110,7 +128,9 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-body font-medium text-foreground mb-2">Email</label>
+                    <label className="block text-sm font-body font-medium text-foreground mb-2">
+                      {getTranslation("email", language)}
+                    </label>
                     <input
                       type="email"
                       required
@@ -121,7 +141,9 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-body font-medium text-foreground mb-2">Message</label>
+                    <label className="block text-sm font-body font-medium text-foreground mb-2">
+                      {getTranslation("message", language)}
+                    </label>
                     <textarea
                       required
                       rows={4}
@@ -136,7 +158,7 @@ const Contact = () => {
                     className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-body font-medium rounded-lg hover:opacity-90 transition-opacity"
                   >
                     <Send size={18} />
-                    Submit
+                    {getTranslation("send", language)}
                   </button>
                 </form>
               </div>

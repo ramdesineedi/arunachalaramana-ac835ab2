@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import Layout from "../components/Layout";
+import { useLanguage } from "@/hooks/useLanguageHook";
+import { getTranslation } from "@/lib/translations";
 import ramanaMaharshi from "@/assets/ramana-maharshi.jpg";
+import ramanaMaharshi2 from "@/assets/ramana-maharshi-meditation.png";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -33,19 +36,26 @@ const sections = [
 ];
 
 const Teachings = () => {
+  const { language } = useLanguage();
+
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-primary font-body text-sm tracking-[0.2em] uppercase mb-3">Wisdom</p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Teachings</h1>
-            <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto italic">
-              Ramana Maharshi provided upadesa by providing darshan and sitting silently together with devotees and visitors.
-            </p>
-          </motion.div>
-        </div>
+      {/* Hero Banner */}
+      <section className="relative h-80 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e26612]/90 via-[#d45511]/80 to-[#a63d08]/80">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative text-center px-4 max-w-4xl"
+        >
+          <p className="text-white/90 font-body text-sm tracking-[0.3em] uppercase mb-4">
+            {getTranslation("wisdom", language)}
+          </p>
+          <h1 className="font-display text-3xl md:text-5xl lg:text-5xl font-bold text-white leading-tight mb-4">
+            {getTranslation("teachings", language)}
+          </h1>
+          <p className="text-white font-body text-lg max-w-2xl mx-auto italic">{getTranslation("teachingsDesc", language)}</p>
+        </motion.div>
       </section>
 
       {/* Teachings Content */}
@@ -82,7 +92,7 @@ const Teachings = () => {
             className="text-center"
           >
             <img
-              src={ramanaMaharshi}
+              src={ramanaMaharshi2}
               alt="Sri Ramana Maharshi"
               className="rounded-2xl shadow-warm-lg max-w-sm mx-auto w-full"
             />

@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         display: ["Playfair Display", "Georgia", "serif"],
         body: ["Lato", "system-ui", "sans-serif"],
+        // custom telugu font that will be toggled via language class or html[lang]
+        telugu: ["NTR", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

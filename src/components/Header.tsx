@@ -2,19 +2,22 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/hooks/useLanguageHook";
+import { getTranslation } from "@/lib/translations";
 
 const navLinks = [
-  { path: "/", label: "Home" },
-  { path: "/teachings", label: "Teachings" },
-  { path: "/media", label: "Media" },
-  { path: "/projects", label: "Projects" },
-  { path: "/contact", label: "Contact Us" },
-  { path: "/donation", label: "Donation" },
+  { path: "/", labelKey: "home" as const },
+  { path: "/teachings", labelKey: "teachings" as const },
+  { path: "/media", labelKey: "media" as const },
+  { path: "/projects", labelKey: "projects" as const },
+  { path: "/contact", labelKey: "contact" as const },
+  { path: "/donation", labelKey: "donation" as const },
 ];
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { language, setLanguage } = useLanguage();
 
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
@@ -25,9 +28,11 @@ const Header = () => {
           </div>
           <div>
             <h1 className="font-display text-lg font-bold leading-tight text-foreground">
-              Sri Arunachalaramana
+              {getTranslation("SriArunachalaramana", language)}
             </h1>
-            <p className="text-xs text-muted-foreground font-body">Charitable Trust</p>
+            <p className="text-xs text-muted-foreground font-body">
+              {getTranslation("charityTrust", language)}
+            </p>
           </div>
         </Link>
 
@@ -43,18 +48,45 @@ const Header = () => {
                   : "text-foreground hover:bg-secondary"
               }`}
             >
-              {link.label}
+              {getTranslation(link.labelKey, language)}
             </Link>
           ))}
         </nav>
 
-        {/* Mobile toggle */}
-        <button
-          className="lg:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Language Picker & Mobile toggle */}
+        <div className="flex items-center gap-3">
+          {/* Language Picker */}
+          <div className="flex items-center gap-2 bg-secondary rounded-lg p-1">
+            <button
+              onClick={() => setLanguage("en")}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                language === "en"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-foreground hover:bg-primary/10 font-body"
+              }`}
+            >
+              English
+            </button>
+            <button
+              onClick={() => setLanguage("te")}
+              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                language === "te"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-foreground hover:bg-primary/10 font-telugu"
+              }`}
+            >
+              తెలుగు
+            </button>
+          </div>
+
+          {/* Mobile toggle */}
+          <button
+            className="lg:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -78,7 +110,7 @@ const Header = () => {
                       : "text-foreground hover:bg-secondary"
                   }`}
                 >
-                  {link.label}
+                  {getTranslation(link.labelKey, language)}
                 </Link>
               ))}
             </div>

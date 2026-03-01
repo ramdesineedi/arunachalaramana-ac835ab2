@@ -2,9 +2,16 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Camera, Video, Play, X, ChevronDown } from "lucide-react";
 import Layout from "../components/Layout";
+import { useLanguage } from "@/hooks/useLanguageHook";
+import { getTranslation } from "@/lib/translations";
 import gallery1 from "../assets/gallery-1.jpg";
 import gallery2 from "../assets/gallery-2.jpg";
 import gallery3 from "../assets/gallery-3.jpg";
+import gallery4 from "../assets/gallery-4.jpg";
+import gallery5 from "../assets/gallery-5.jpg";
+import gallery6 from "../assets/gallery-6.jpg";
+import gallery7 from "../assets/gallery-7.jpg";
+import gallery8 from "../assets/gallery-8.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -15,6 +22,11 @@ const photos = [
   { src: gallery1, alt: "Ramana Maharshi sitting in meditation" },
   { src: gallery2, alt: "Temple puja ceremony" },
   { src: gallery3, alt: "Ramana Maharshi portrait" },
+  { src: gallery4, alt: "Ramana Maharshi standing" },
+  { src: gallery5, alt: "Ramana Maharshi on bed" },
+  { src: gallery6, alt: "Ramana Maharshi with elephant" },
+  { src: gallery7, alt: "Ramana Maharshi sleeping" },
+  { src: gallery8, alt: "Ramana Maharshi portrait in meditation" },
 ];
 
 type VideoItem = {
@@ -78,23 +90,29 @@ const videosByYear: VideoYear[] = [
 ];
 
 const Media = () => {
+  const { language } = useLanguage();
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [expandedYear, setExpandedYear] = useState<string>("2024");
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-primary font-body text-sm tracking-[0.2em] uppercase mb-3">Gallery</p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Media</h1>
-            <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-              Explore our collection of photos and videos from events and celebrations.
-            </p>
-          </motion.div>
-        </div>
+      {/* Hero Banner */}
+      <section className="relative h-80 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e26612]/90 via-[#d45511]/80 to-[#a63d08]/80">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative text-center px-4 max-w-4xl"
+        >
+          <p className="text-white/90 font-body text-sm tracking-[0.3em] uppercase mb-4">
+            Gallery
+          </p>
+          <h1 className="font-display text-3xl md:text-5xl lg:text-5xl font-bold text-white leading-tight mb-4">
+            {getTranslation("media", language)}
+          </h1>
+          <p className="text-white font-body text-lg max-w-2xl mx-auto">{getTranslation("mediaDesc", language)}</p>
+        </motion.div>
       </section>
 
       {/* Photo Gallery */}
@@ -103,6 +121,7 @@ const Media = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-12">
             <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Camera className="text-primary" size={28} />
+            
             </div>
             <h2 className="font-display text-3xl font-bold text-foreground mb-2">Photos</h2>
             <p className="text-muted-foreground font-body">Moments from our spiritual journey and events</p>
@@ -136,6 +155,7 @@ const Media = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-12">
             <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Video className="text-primary" size={28} />
+            
             </div>
             <h2 className="font-display text-3xl font-bold text-foreground mb-2">Videos</h2>
             <p className="text-muted-foreground font-body">Watch our event recordings organized by year</p>
