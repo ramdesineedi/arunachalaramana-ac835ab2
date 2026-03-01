@@ -2,9 +2,13 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Heart, BookOpen, Users, Utensils, Home as HomeIcon } from "lucide-react";
 import Layout from "../components/Layout";
-import heroBg from "@/assets/hero-bg.jpg";
+import { useLanguage } from "@/hooks/useLanguageHook";
+import { getTranslation } from "@/lib/translations";
+// hero background replaced with video
+import heroVideo from "@/assets/homepage-hero-video.mp4";
 import ramanaMaharshi from "@/assets/ramana-maharshi.jpg";
 import templeImg from "@/assets/temple.jpg";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -16,13 +20,20 @@ const stagger = {
 };
 
 const Index = () => {
+  const { language } = useLanguage();
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroBg})` }}
+      <section className="relative h-[100vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* video background */}
+        <video
+          className="absolute inset-0 object-cover w-full h-full"
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
         />
         <div className="absolute inset-0 bg-foreground/50" />
         <motion.div
@@ -32,26 +43,26 @@ const Index = () => {
           className="relative z-10 text-center px-4 max-w-4xl"
         >
           <p className="text-primary-foreground/80 font-body text-sm tracking-[0.3em] uppercase mb-4">
-            ॐ Sri Arunachalaramana Charitable Trust
+            {getTranslation("SriArunachalaramanaCharitableTrust", language)}
           </p>
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6">
-            Bhagavan Sri Ramana Maharshi
+            {getTranslation("BhagavanSriRamanaMaharshi", language)}
           </h1>
           <p className="text-primary-foreground/90 font-body text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed italic">
-            "When a Mantra is Repeated, if Attention be directed to the Source whence the Mantra-Sound Emanates, the Mind will get Absorbed in that. That is Tapas."
+            {getTranslation("heroCopy", language)}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/teachings"
               className="px-8 py-3 bg-primary text-primary-foreground font-body font-medium rounded-lg hover:opacity-90 transition-opacity"
             >
-              Explore Teachings
+              {getTranslation("exploreTeachings", language)}
             </Link>
             <Link
               to="/donation"
               className="px-8 py-3 border-2 border-primary-foreground/40 text-primary-foreground font-body font-medium rounded-lg hover:bg-primary-foreground/10 transition-colors"
             >
-              Donate Now
+              {getTranslation("donateNow", language)}
             </Link>
           </div>
         </motion.div>
@@ -61,10 +72,10 @@ const Index = () => {
       <section className="bg-gradient-saffron py-6">
         <div className="container mx-auto px-4 text-center">
           <p className="text-primary-foreground font-display text-xl md:text-2xl font-semibold">
-            🪔 Bhagavan Sri Ramana Maharshi 146th Birthday Celebrations 🪔
+            {getTranslation("birthdayCelebrations", language)}
           </p>
           <p className="text-primary-foreground/80 font-body text-sm mt-1">
-            30th December, 2025 @ Opp. GAIL Office, A.V. Apparao Road, Rajamahendravam
+            {getTranslation("celebrationDate", language)}
           </p>
         </div>
       </section>
@@ -88,27 +99,22 @@ const Index = () => {
             </motion.div>
             <motion.div variants={fadeInUp}>
               <p className="text-primary font-body text-sm tracking-[0.2em] uppercase mb-3">
-                About Bhagavan
+                {getTranslation("aboutBhagavan", language)}
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Bhagavan Sri Ramana Maharshi
+                {getTranslation("bhagavanTitle", language)}
               </h2>
               <p className="text-muted-foreground font-body leading-relaxed mb-4">
-                Arudra Darshanam, a festival that commemorates the manifestation of Lord Siva as Nataraja, 
-                was being celebrated with great ardor in the Bhuminatha temple in Tiruchuzhi, South India, 
-                on December 29, 1879. Just as the Deity re-entered the temple past midnight on December 30th 
-                at 1:00AM, the first cry of a baby boy was heard in a house adjacent to the temple.
+                {getTranslation("aboutBhagavanPara1", language)}
               </p>
               <p className="text-muted-foreground font-body leading-relaxed mb-6">
-                The fortunate parents were Sundaram Iyer and his wife Alagammal. The newborn child received 
-                the name Venkataraman and was later known as Bhagavan Sri Ramana Maharshi. As the child was 
-                being born, a lady with poor eye-sight exclaimed that the new born was enveloped in light.
+                {getTranslation("aboutBhagavanPara2", language)}
               </p>
               <Link
                 to="/teachings"
                 className="inline-flex items-center gap-2 text-primary font-body font-medium hover:underline"
               >
-                Read His Teachings →
+                {getTranslation("readHisTeachings", language)}
               </Link>
             </motion.div>
           </motion.div>
@@ -125,17 +131,16 @@ const Index = () => {
             variants={fadeInUp}
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Pournami Food Donation Campaign
+              {getTranslation("pournamisectionTitle", language)}
             </h2>
             <p className="text-muted-foreground font-body text-lg mb-8 max-w-2xl mx-auto">
-              Participate in Every Month's Pournami Food Donation Campaign. "Food is equal to Almighty" — 
-              Nithya Annaprasadham.
+              {getTranslation("pournamisectionDesc", language)}
             </p>
             <Link
               to="/donation"
               className="inline-block px-8 py-3 bg-primary text-primary-foreground font-body font-medium rounded-lg hover:opacity-90 transition-opacity"
             >
-              Donate Now
+              {getTranslation("donateNow", language)}
             </Link>
           </motion.div>
         </div>
@@ -152,13 +157,13 @@ const Index = () => {
             className="text-center mb-16"
           >
             <motion.p variants={fadeInUp} className="text-primary font-body text-sm tracking-[0.2em] uppercase mb-3">
-              Our Purpose
+              {getTranslation("ourPurpose", language)}
             </motion.p>
             <motion.h2 variants={fadeInUp} className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Mission & Vision
+              {getTranslation("missionVision", language)}
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-muted-foreground font-body max-w-2xl mx-auto">
-              With the blessings of Guru Sri Ramana Maharshi, we have taken the initiative to serve the community through spiritual and charitable activities.
+              {getTranslation("missionVisionDesc", language)}
             </motion.p>
           </motion.div>
 
@@ -172,28 +177,28 @@ const Index = () => {
             {[
               {
                 icon: HomeIcon,
-                title: "Temple Construction",
-                desc: "Unveil the temple of Goddess Sri Apita Kuchalambika Devi & Lord Sri Arunachaleswara at Rajamahendravaram.",
+                titleKey: "templeConstruction" as const,
+                descKey: "templeConstructionDesc" as const,
               },
               {
                 icon: BookOpen,
-                title: "Vedic Education",
-                desc: "A University of Vedic Education to provide the next generation the values of Indian traditions and culture.",
+                titleKey: "vedicEducation" as const,
+                descKey: "vedicEducationDesc" as const,
               },
               {
                 icon: Utensils,
-                title: "Food Donation",
-                desc: '"Food is equal to Almighty" — providing food as Nithya Annaprasadham scheme to those in need.',
+                titleKey: "foodDonation" as const,
+                descKey: "foodDonationDesc" as const,
               },
               {
                 icon: Users,
-                title: "Ramana Ashram",
-                desc: "Construct an Ashram in the name of Guru Sri Ramana Maharshi, guiding us towards the right path.",
+                titleKey: "ramanaAshram" as const,
+                descKey: "ramanaAshramDesc" as const,
               },
               {
                 icon: Heart,
-                title: "Gosala (Cow Shelter)",
-                desc: "Service to the magnificent Go-matas (cows) by constructing a spacious Gosala (cow shed).",
+                titleKey: "gosala" as const,
+                descKey: "gosalaDesc" as const,
               },
             ].map((item, i) => (
               <motion.div
@@ -205,10 +210,10 @@ const Index = () => {
                   <item.icon className="text-primary" size={24} />
                 </div>
                 <h3 className="font-display text-xl font-semibold text-foreground mb-3">
-                  {item.title}
+                  {getTranslation(item.titleKey, language)}
                 </h3>
                 <p className="text-muted-foreground font-body text-sm leading-relaxed">
-                  {item.desc}
+                  {getTranslation(item.descKey, language)}
                 </p>
               </motion.div>
             ))}
@@ -217,10 +222,10 @@ const Index = () => {
       </section>
 
       {/* Temple Image Section */}
-      <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
+      <section className="relative h-[70vh] min-h-[400px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${templeImg})` }}
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${heroBg})` }}
         />
         <div className="absolute inset-0 bg-foreground/40" />
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
@@ -231,7 +236,7 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <p className="text-primary-foreground font-display text-2xl md:text-4xl font-bold max-w-3xl leading-relaxed">
-              Om Sri Arunachaleswaraya Namah
+              {getTranslation("OmSriArunachaleswarayaNamah", language)}
             </p>
           </motion.div>
         </div>

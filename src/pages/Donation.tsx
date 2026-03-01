@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Heart, Send, Building2, CreditCard, Copy, Check } from "lucide-react";
+import { Heart, Building2, CreditCard, Copy, Check, Utensils, Home } from "lucide-react";
 import Layout from "../components/Layout";
+import { useLanguage } from "@/hooks/useLanguageHook";
+import { getTranslation } from "@/lib/translations";
 import qrCode from "../assets/qr-code.png";
+import templeImg from "../assets/temple.jpg";
+import meal1 from "../assets/Meal_01.jpg";
+import meal2 from "../assets/Meal_02.jpg";
+import thiruvannamalaiTemple from "../assets/thiruvannamalai-temple.jpg";
 
 const Donation = () => {
-  const [formData, setFormData] = useState({ name: "", phone: "", email: "", about: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const { language } = useLanguage();
+  // form-related state removed since the manual donation form has been taken out
   const [copied, setCopied] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setFormData({ name: "", phone: "", email: "", about: "" });
-    setTimeout(() => setSubmitted(false), 3000);
-  };
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -34,19 +34,162 @@ const Donation = () => {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-              <Heart className="text-primary" size={32} />
-            </div>
-            <p className="text-primary font-body text-sm tracking-[0.2em] uppercase mb-3">Support Us</p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Donation</h1>
-            <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-              Your generous contribution helps us continue our charitable and spiritual activities.
-            </p>
-          </motion.div>
+      {/* Hero Banner */}
+      <section className="relative h-80 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e26612]/90 via-[#d45511]/80 to-[#a63d08]/80">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative text-center px-4 max-w-4xl"
+        >
+          <p className="text-white/90 font-body text-sm tracking-[0.3em] uppercase mb-4">
+            {getTranslation("supportUs", language)}
+          </p>
+          <h1 className="font-display text-3xl md:text-5xl lg:text-5xl font-bold text-white leading-tight mb-4">
+            {getTranslation("donation", language)}
+          </h1>
+          <p className="text-white font-body text-lg max-w-2xl mx-auto italic">{getTranslation("donationDesc", language)}</p>
+        </motion.div>
+      </section>
+
+      {/* Temple Donation Sections - Two Column Layout */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left Column: Annaprasadam Section */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center mb-8">
+                <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
+                  <Utensils className="text-amber-700" size={24} />
+                </div>
+                <h2 className="font-display text-3xl font-bold text-foreground mb-2">
+                  Annaprasadam Seva
+                </h2>
+                <p className="text-muted-foreground font-body">
+                  Provide food seva offerings for devotees.
+                </p>
+              </div>
+
+              {/* Pricing Cards */}
+              <div className="space-y-4 mb-8">
+                {[
+                  { title: "Annaprasadam for 2 People", price: "₹500" },
+                  { title: "Monthly Annaprasadam", price: "₹10,000" },
+                  { title: "Yearly Annaprasadam", price: "₹51,000" },
+                ].map((card, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-card rounded-xl p-5 border border-amber-200/50 shadow-warm hover:shadow-warm-lg transition-shadow cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-body font-medium text-foreground group-hover:text-primary transition-colors">
+                        {card.title}
+                      </h3>
+                      <p className="font-display text-lg font-bold text-amber-700">{card.price}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Devotional Images */}
+              <div className="grid grid-cols-2 gap-4">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl overflow-hidden shadow-warm"
+                >
+                  <img src={meal1} alt="Annadanam - Food Service" className="w-full h-48 object-cover" />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl overflow-hidden shadow-warm"
+                >
+                  <img src={meal2} alt="Devotional Offering" className="w-full h-48 object-cover" />
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Temple Land Donation Section */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center mb-8">
+                <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                  <Home className="text-orange-700" size={24} />
+                </div>
+                <h2 className="font-display text-3xl font-bold text-foreground mb-2">
+                  Donate for Temple Land
+                </h2>
+                <p className="text-muted-foreground font-body">
+                  Support temple land development and expansion.
+                </p>
+              </div>
+
+              {/* Pricing Cards */}
+              <div className="space-y-4 mb-8">
+                {[
+                  { title: "Donate 1 feet Land", price: "₹500" },
+                  { title: "Donate 10 feet Land", price: "₹5000" },
+                  { title: "Custom Donation", price: "Donate As You Wish" },
+                ].map((card, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-card rounded-xl p-5 border border-orange-200/50 shadow-warm hover:shadow-warm-lg transition-shadow cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-body font-medium text-foreground group-hover:text-primary transition-colors">
+                        {card.title}
+                      </h3>
+                      <p className="font-display text-lg font-bold text-orange-700">{card.price}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Temple Images */}
+              <div className="grid grid-cols-2 gap-4">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl overflow-hidden shadow-warm"
+                >
+                  <img src={templeImg} alt="Temple Land" className="w-full h-48 object-cover" />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl overflow-hidden shadow-warm"
+                >
+                  <img src={thiruvannamalaiTemple} alt="Temple Construction" className="w-full h-48 object-cover" />
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -62,8 +205,12 @@ const Donation = () => {
             <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Building2 className="text-primary" size={28} />
             </div>
-            <h2 className="font-display text-3xl font-bold text-foreground mb-2">Manual Payment</h2>
-            <p className="text-muted-foreground font-body">Transfer directly to our bank account or scan the QR code</p>
+            <h2 className="font-display text-3xl font-bold text-foreground mb-2">
+              {getTranslation("manualPayment", language)}
+            </h2>
+            <p className="text-muted-foreground font-body">
+              {getTranslation("transferDesc", language)}
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -76,7 +223,9 @@ const Donation = () => {
             >
               <div className="flex items-center gap-3 mb-6">
                 <CreditCard className="text-primary" size={24} />
-                <h3 className="font-display text-xl font-bold text-foreground">Bank Details</h3>
+                <h3 className="font-display text-xl font-bold text-foreground">
+                  {getTranslation("bankDetails", language)}
+                </h3>
               </div>
               <div className="space-y-4">
                 {bankDetails.map((item) => (
@@ -111,7 +260,9 @@ const Donation = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="bg-card rounded-2xl p-8 border border-border shadow-warm-lg text-center"
             >
-              <h3 className="font-display text-xl font-bold text-foreground mb-4">Scan to Pay</h3>
+              <h3 className="font-display text-xl font-bold text-foreground mb-4">
+                {getTranslation("qrCode", language)}
+              </h3>
               <div className="bg-background rounded-xl p-4 inline-block border border-border">
                 <img src={qrCode} alt="Payment QR Code" className="w-56 h-auto mx-auto" />
               </div>
@@ -123,83 +274,7 @@ const Donation = () => {
         </div>
       </section>
 
-      {/* Donation Form */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 max-w-xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-background rounded-2xl p-8 md:p-10 border border-border shadow-warm-lg"
-          >
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2 text-center">
-              Donation Form
-            </h2>
-            <p className="text-muted-foreground font-body text-sm text-center mb-8">
-              For Indian Currency
-            </p>
 
-            {submitted && (
-              <div className="mb-6 p-4 bg-primary/10 rounded-lg text-primary font-body text-sm text-center">
-                Thank you for your generous donation! We will contact you shortly.
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="block text-sm font-body font-medium text-foreground mb-2">Name</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-card font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  placeholder="Your full name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-body font-medium text-foreground mb-2">Phone</label>
-                <input
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-card font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  placeholder="Your phone number"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-body font-medium text-foreground mb-2">Email</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-card font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  placeholder="Your email address"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-body font-medium text-foreground mb-2">Tell Us About Yourself</label>
-                <textarea
-                  rows={4}
-                  value={formData.about}
-                  onChange={(e) => setFormData({ ...formData, about: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-card font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
-                  placeholder="A few words about yourself..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-saffron text-primary-foreground font-body font-medium rounded-lg hover:opacity-90 transition-opacity"
-              >
-                <Send size={18} />
-                Submit Donation
-              </button>
-            </form>
-          </motion.div>
-        </div>
-      </section>
     </Layout>
   );
 };
