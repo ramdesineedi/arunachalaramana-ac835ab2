@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/hooks/useLanguageHook";
 import { getTranslation } from "@/lib/translations";
+import logoIcon from "../assets/logo-icon.png";
 
 const navLinks = [
   { path: "/", labelKey: "home" as const },
@@ -21,10 +22,14 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-saffron flex items-center justify-center">
-            <span className="text-primary-foreground font-display font-bold text-lg">ॐ</span>
+      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between py-4 px-4">
+        <Link to="/" className="flex items-center gap-3 w-full lg:w-auto justify-center lg:justify-start mb-4 lg:mb-0">
+          <div className="w-12 h-12 rounded-full  flex items-center justify-center">
+            <img
+              src={logoIcon}
+              alt="Sri Arunachalaramana Logo"
+              className="w-12 h-12 object-cover rounded-full"
+            />
           </div>
           <div>
             <h1 className="font-display text-lg font-bold leading-tight text-foreground">
@@ -54,7 +59,7 @@ const Header = () => {
         </nav>
 
         {/* Language Picker & Mobile toggle */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 justify-between w-full lg:w-auto">
           {/* Language Picker */}
           <div className="flex items-center gap-2 bg-secondary rounded-lg p-1">
             <button

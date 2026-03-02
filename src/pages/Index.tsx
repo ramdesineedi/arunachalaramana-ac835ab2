@@ -9,6 +9,7 @@ import heroVideo from "@/assets/homepage-hero-video.mp4";
 import ramanaMaharshi from "@/assets/ramana-maharshi.jpg";
 import templeImg from "@/assets/temple.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
+import logoIcon from "../assets/logo-icon.png";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -176,6 +177,11 @@ const Index = () => {
           >
             {[
               {
+                icon: Utensils,
+                titleKey: "foodDonation" as const,
+                descKey: "foodDonationDesc" as const,
+              },
+              {
                 icon: HomeIcon,
                 titleKey: "templeConstruction" as const,
                 descKey: "templeConstructionDesc" as const,
@@ -184,11 +190,6 @@ const Index = () => {
                 icon: BookOpen,
                 titleKey: "vedicEducation" as const,
                 descKey: "vedicEducationDesc" as const,
-              },
-              {
-                icon: Utensils,
-                titleKey: "foodDonation" as const,
-                descKey: "foodDonationDesc" as const,
               },
               {
                 icon: Users,
@@ -235,9 +236,15 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
+            <img
+              src={logoIcon}
+              alt="Sri Arunachaleswarar Temple logo"
+              className="w-auto mb-5 mx-auto"
+            />
             <p className="text-primary-foreground font-display text-2xl md:text-4xl font-bold max-w-3xl leading-relaxed">
               {getTranslation("OmSriArunachaleswarayaNamah", language)}
             </p>
+            
           </motion.div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import Layout from "../components/Layout";
 import { useLanguage } from "@/hooks/useLanguageHook";
 import { getTranslation } from "@/lib/translations";
+import { get } from "http";
 
 const Contact = () => {
   const { language } = useLanguage();
@@ -47,7 +48,7 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-                Sri Arunachalaramana Peetam & Charitable Trust
+                {getTranslation("SriArunachalaramanaCharitableTrust", language)}
               </h2>
               <div className="h-1 w-16 bg-gradient-saffron rounded mb-8" />
 

@@ -2,6 +2,12 @@ import { motion } from "framer-motion";
 import Layout from "../components/Layout";
 import { useLanguage } from "@/hooks/useLanguageHook";
 import { getTranslation } from "@/lib/translations";
+import project1 from "../assets/project_1.avif";
+import project2 from "../assets/project_2.avif";
+import project3 from "../assets/project_3.avif";
+import project4 from "../assets/project_4.avif";
+import project5 from "../assets/project_5.avif";
+import project6 from "../assets/project_6.avif";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -14,28 +20,28 @@ const stagger = {
 
 const projects = [
   {
-    title: "Celebration On the Occasion of the Full Moon",
-    image: "https://static.wixstatic.com/media/6898b2_c12620e6886c4b899d0134dfbf0a1659~mv2.jpeg/v1/fill/w_600,h_440,al_c,q_80,enc_avif,quality_auto/Occasion%20of%20the%20Full%20Moon7.jpeg",
+    title: "projectTitle1" as const,
+    image: project1,
   },
   {
-    title: "Water & Buttermilk Distribution",
-    image: "https://static.wixstatic.com/media/6898b2_4167e78d05de4d45b93124d1d2722692~mv2.jpg/v1/fill/w_600,h_440,al_c,q_80,enc_avif,quality_auto/Buttermilk%20distribution10.jpg",
+    title: "projectTitle2" as const,
+    image: project2,
   },
   {
-    title: "140th Birth Anniversary of Bhagavan Ramana Maharshi",
-    image: "https://static.wixstatic.com/media/6898b2_9303f0875b634c0bb9f64b6b7d7b600d~mv2.jpg/v1/fill/w_600,h_440,al_c,q_80,enc_avif,quality_auto/00072_MTS_20200502_161703_354.jpg",
+    title: "projectTitle3" as const,
+    image: project3,
   },
   {
-    title: "Feeding Dogs #COVID-19",
-    image: "https://static.wixstatic.com/media/6898b2_1e92e56097e147218f87741834ec9b2f~mv2.jpeg/v1/fill/w_600,h_440,al_c,q_80,enc_avif,quality_auto/WhatsApp%20Image%202020-04-25%20at%208_58_59%20PM_.jpeg",
+    title: "projectTitle4" as const,
+    image: project4,
   },
   {
-    title: "Cheque Distribution",
-    image: "https://static.wixstatic.com/media/6898b2_b72a78d4b6ee499a8d38b5615aa3da7f~mv2.jpeg/v1/fill/w_600,h_440,al_c,q_80,enc_avif,quality_auto/WhatsApp%20Image%202020-11-10%20at%2011_42_33%20AM.jpeg",
+    title: "projectTitle5" as const,
+    image: project5,
   },
   {
-    title: "Punarvasa Nakshatram Pooja",
-    image: "https://static.wixstatic.com/media/6898b2_28b716065d6c4612aef1a1a778c66155~mv2.jpg/v1/fill/w_600,h_440,al_c,q_80,enc_avif,quality_auto/Capture_edited.jpg",
+    title: "projectTitle6" as const,
+    image: project6,
   },
 ];
 
@@ -58,7 +64,7 @@ const Projects = () => {
           <h1 className="font-display text-3xl md:text-5xl lg:text-5xl font-bold text-white leading-tight mb-4">
             {getTranslation("projects", language)}
           </h1>
-          <p className="text-white font-body text-lg max-w-2xl mx-auto italic">Our charitable activities and community service initiatives.</p>
+          <p className="text-white font-body text-lg max-w-2xl mx-auto italic">{getTranslation("projectsDesc", language)}</p>
         </motion.div>
       </section>
 
@@ -80,14 +86,14 @@ const Projects = () => {
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={getTranslation(project.title, language)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-lg font-semibold text-foreground">
-                    {project.title}
+                    {getTranslation(project.title, language)}
                   </h3>
                 </div>
               </motion.div>

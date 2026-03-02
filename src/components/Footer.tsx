@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguageHook";
 import { getTranslation } from "@/lib/translations";
+import logoIcon from "../assets/logo-icon.png";
 
 const Footer = () => {
   const { language } = useLanguage();
@@ -12,16 +13,19 @@ const Footer = () => {
           {/* About */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-saffron flex items-center justify-center">
-                <span className="text-primary-foreground font-display font-bold text-lg">ॐ</span>
+              <div className="w-12 h-12 rounded-full bg-gradient-saffron flex items-center justify-center">
+                <img
+                              src={logoIcon}
+                              alt="Sri Arunachalaramana Logo"
+                              className="w-12 h-12 object-cover rounded-full"
+                            />
               </div>
               <h3 className="font-display text-lg font-bold text-foreground">
-                Sri Arunachalaramana
+                {getTranslation("SriArunachalaramana", language)}
               </h3>
             </div>
             <p className="text-muted-foreground text-sm font-body leading-relaxed">
-              Charitable Trust dedicated to the teachings of Bhagavan Sri Ramana Maharshi.
-              Serving the community through spiritual education, food donation, and charitable activities.
+                {getTranslation("footerPara", language)}
             </p>
           </div>
 
@@ -54,8 +58,9 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin size={16} className="text-primary mt-1 shrink-0" />
                 <p className="text-sm text-muted-foreground font-body">
-                  D.No. 80-32-4/3, Opp. GAIL Office Road, Saradha Nagar, A.V.Apparao Road, 
-                  Rajahmahendravaram - 533103, East Godavari District, Andhra Pradesh
+                  {getTranslation("SriArunachalaramanaCharitableTrust", language)}
+                  <br />
+                  {getTranslation("footerAddress", language)}
                 </p>
               </div>
               <div className="flex items-center gap-3">
