@@ -4,39 +4,40 @@ import { useLanguage } from "@/hooks/useLanguageHook";
 import { getTranslation } from "@/lib/translations";
 import ramanaMaharshi from "@/assets/ramana-maharshi.jpg";
 import ramanaMaharshi2 from "@/assets/ramana-maharshi-meditation.png";
+import { get } from "http";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-const sections = [
-  {
-    title: "Self",
-    content: [
-      'Ramana Maharshi used various terms to denote the Self. The most frequently used terms were sat-chit-ananda, which translates into English as "truth-consciousness-bliss"; God, Brahman and Siva and the Heart, which was rather to indicate that "the Self was the source from which all appearances manifested."',
-      'Ramana Maharshi considered the Self to be permanent and enduring, surviving physical death. "The sleep, dream and waking states are mere phenomena appearing on the Self," as is the "I"-thought. Our "true nature" is "simple Being, free from thoughts."',
-    ],
-  },
-  {
-    title: "Silence",
-    content: [
-      "Ramana Maharshi's main means of instruction to his devotees in order to remove ignorance and abide in Self-awareness was through silently sitting together with his visitors, using words only sparingly. His method of instruction has been compared to Dakshinamurti – Shiva in the ascetic appearance of the Guru, who teaches through silence.",
-      '"Silence is the true upadesa. It is the perfect upadesa. It is suited only for the most advanced seeker. The others are unable to draw full inspiration from it. Therefore, they require words to explain the truth. But truth is beyond words; it does not warrant explanation. All that is possible is to indicate It."',
-    ],
-  },
-  {
-    title: "Bhakti",
-    content: [
-      '"There are only two ways to conquer destiny or to be independent of it. One is to inquire whose this destiny is and discover that only the ego is bound by it and not the Self and that the ego is non-existent."',
-      '"The other way is to kill the ego by completely surrendering to the Lord, realizing one\'s helplessness and saying all the time: Not I, but Thou, oh Lord, giving up all sense of I and mine and leaving it to the Lord to do what He likes with you."',
-      '"True surrender is the love of God for the sake of love and nothing else, not even for the sake of salvation."',
-    ],
-  },
-];
-
 const Teachings = () => {
   const { language } = useLanguage();
+
+  const sections = [
+    {
+      titleKey: "self" as const,
+      content: [
+        `${getTranslation("selfPara1", language)}`,
+        `${getTranslation("selfPara2", language)}`,
+      ],
+    },
+    {
+      titleKey: "silence" as const,
+      content: [
+        `${getTranslation("silencePara1", language)}`,
+        `${getTranslation("silencePara2", language)}`,
+      ],
+    },
+    {
+      titleKey: "bhakti" as const,
+      content: [
+        `${getTranslation("bhaktiPara1", language)}`,
+        `${getTranslation("bhaktiPara2", language)}`,
+        `${getTranslation("bhaktiPara3", language)}`,
+      ],
+    },
+  ];
 
   return (
     <Layout>
@@ -63,7 +64,7 @@ const Teachings = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           {sections.map((section, i) => (
             <motion.div
-              key={section.title}
+              key={section.titleKey}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
@@ -72,7 +73,7 @@ const Teachings = () => {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="h-px flex-1 bg-border" />
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">{section.title}</h2>
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">{getTranslation(section.titleKey, language)}</h2>
                 <div className="h-px flex-1 bg-border" />
               </div>
               {section.content.map((para, j) => (

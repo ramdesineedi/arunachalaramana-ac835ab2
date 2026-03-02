@@ -123,8 +123,12 @@ const Media = () => {
               <Camera className="text-primary" size={28} />
             
             </div>
-            <h2 className="font-display text-3xl font-bold text-foreground mb-2">Photos</h2>
-            <p className="text-muted-foreground font-body">Moments from our spiritual journey and events</p>
+            <h2 className="font-display text-3xl font-bold text-foreground mb-2">
+              {getTranslation("photosGallery", language)}
+            </h2>
+            <p className="text-muted-foreground font-body">
+              {getTranslation("photosGalleryDesc", language)}
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -157,8 +161,10 @@ const Media = () => {
               <Video className="text-primary" size={28} />
             
             </div>
-            <h2 className="font-display text-3xl font-bold text-foreground mb-2">Videos</h2>
-            <p className="text-muted-foreground font-body">Watch our event recordings organized by year</p>
+            <h2 className="font-display text-3xl font-bold text-foreground mb-2">
+              {getTranslation("videosGallery", language)}
+            </h2>
+            <p className="text-muted-foreground font-body">{getTranslation("videosGalleryDesc", language)}</p>
           </motion.div>
 
           <div className="space-y-4">
