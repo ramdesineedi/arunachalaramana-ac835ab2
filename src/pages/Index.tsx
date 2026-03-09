@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Heart, BookOpen, Users, Utensils, Home as HomeIcon } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import Layout from "../components/Layout";
 import { useLanguage } from "@/hooks/useLanguageHook";
 import { getTranslation } from "@/lib/translations";
@@ -24,7 +25,40 @@ const Index = () => {
   const { language } = useLanguage();
 
   return (
-    <Layout>
+    <>
+      <Helmet>
+        <title>Sri Arunachalaramana Charitable Trust - Home</title>
+        <meta name="description" content="Welcome to Sri Arunachalaramana Charitable Trust. Discover the teachings of Bhagavan Sri Ramana Maharshi and support our charitable activities including temple construction, food donation, and spiritual education in Rajahmundry." />
+        <meta name="keywords" content="Sri Arunachalaramana Charitable Trust, Ramana Maharshi, spiritual teachings, charity, temple construction, food donation, Rajahmundry" />
+        <link rel="canonical" href="https://arunachalaramana.org/" />
+        <meta property="og:title" content="Sri Arunachalaramana Charitable Trust - Home" />
+        <meta property="og:description" content="Welcome to Sri Arunachalaramana Charitable Trust. Discover the teachings of Bhagavan Sri Ramana Maharshi and support our charitable activities." />
+        <meta property="og:url" content="https://arunachalaramana.org/" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Sri Arunachalaramana Charitable Trust",
+            "url": "https://arunachalaramana.org",
+            "logo": "https://arunachalaramana.org/assets/logo-icon.png",
+            "description": "Charitable Trust dedicated to the teachings of Bhagavan Sri Ramana Maharshi. Serving the community through spiritual education, food donation, and charitable activities.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "D.No.5-408, Police Quarters Back Side, Swaroop Nagar",
+              "addressLocality": "Rajahmahendravaram",
+              "postalCode": "533 106",
+              "addressCountry": "IN"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-XXXXXXXXXX",
+              "contactType": "customer service"
+            }
+          })}
+        </script>
+      </Helmet>
+      <Layout>
       {/* Hero Section */}
       <section className="relative h-[100vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* video background */}
@@ -222,6 +256,36 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Donate for Land Section */}
+      <section className="py-16 bg-card">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.div variants={fadeInUp}>
+              <p className="text-primary font-body text-sm tracking-[0.2em] uppercase mb-3">
+                {getTranslation("donateForLandSectionTitle", language)}
+              </p>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+                {getTranslation("donateForLandTitle", language)}
+              </h2>
+              <p className="text-muted-foreground font-body leading-relaxed mb-4">
+                {getTranslation("donateForLandSubtitle", language)}
+              </p>
+              <Link
+                to="/donation"
+                className="inline-block px-8 py-3 bg-primary text-primary-foreground font-body font-medium rounded-lg hover:opacity-90 transition-opacity "
+              >
+                {getTranslation("donateNow", language)}
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Temple Image Section */}
       <section className="relative h-[70vh] min-h-[400px] overflow-hidden">
         <div
@@ -249,6 +313,7 @@ const Index = () => {
         </div>
       </section>
     </Layout>
+    </>
   );
 };
 

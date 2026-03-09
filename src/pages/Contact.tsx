@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import Layout from "../components/Layout";
 import { useLanguage } from "@/hooks/useLanguageHook";
@@ -19,7 +20,18 @@ const Contact = () => {
   };
 
   return (
-    <Layout>
+    <>
+      <Helmet>
+        <title>Contact Us - Sri Arunachalaramana Charitable Trust</title>
+        <meta name="description" content="Get in touch with Sri Arunachalaramana Charitable Trust. Contact us for inquiries about our charitable activities, donations, or spiritual guidance." />
+        <meta name="keywords" content="contact, Sri Arunachalaramana Charitable Trust, donations, spiritual guidance, Rajahmundry" />
+        <link rel="canonical" href="https://arunachalaramana.org/contact" />
+        <meta property="og:title" content="Contact Us - Sri Arunachalaramana Charitable Trust" />
+        <meta property="og:description" content="Get in touch with Sri Arunachalaramana Charitable Trust for inquiries about our charitable activities and donations." />
+        <meta property="og:url" content="https://arunachalaramana.org/contact" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <Layout>
       {/* Hero Banner */}
       <section className="relative h-80 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e26612]/90 via-[#d45511]/80 to-[#a63d08]/80">
         <motion.div
@@ -62,9 +74,9 @@ const Contact = () => {
                       {getTranslation("address", language)}
                     </h3>
                     <p className="text-muted-foreground font-body text-sm leading-relaxed">
-                      D.No. 80-32-4/3, Opp. GAIL Office Road, Saradha Nagar,
-                      A.V.Apparao Road, Rajahmahendravaram - 533103,
-                      East Godavari District, Andhra Pradesh
+                      {getTranslation("SriArunachalaramanaCharitableTrust", language)}
+                      <br />
+                      {getTranslation("footerAddress", language)}
                     </p>
                   </div>
                 </div>
@@ -168,6 +180,7 @@ const Contact = () => {
         </div>
       </section>
     </Layout>
+    </>
   );
 };
 

@@ -45,6 +45,10 @@ export const translations = {
     gosala: "Gosala (Cow Shelter)",
     gosalaDesc: "Service to the magnificent Go-matas (cows) by constructing a spacious Gosala (cow shed).",
     OmSriArunachaleswarayaNamah: "Om Sri Arunachaleswaraya Namah",
+    donateForLandSectionTitle: "Donate for Land",
+    donateForLandSectionDesc: "Devotion, Silence, and Self-Enquiry — Build a Sacred Arunachala-Inspired Space in Rajahmundry.",
+    donateForLandTitle: "Devotion, Silence, and Self-Enquiry",
+    donateForLandSubtitle: "Build a Sacred Arunachala-Inspired Space in Rajahmundry.",
     
     // Teachings Page
     wisdom: "Wisdom",
@@ -183,6 +187,10 @@ export const translations = {
     gosala: "గోశాల (ఆవుల ఆశ్రయం)",
     gosalaDesc: "గొప్ప గోమాతలను సేవ చేయటం ద్వారా విస్తారమైన గోశాల (గోఠుల) నిర్మాణం.",
     OmSriArunachaleswarayaNamah: "ఓం శ్రీ అరుణాచలేశ్వరాయ నమః",
+    donateForLandSectionTitle: "భూమి కోసం దానం",
+    donateForLandSectionDesc: "భక్తి, నిశ్శబ్దం మరియు స్వీయ-విచారణ — రాజముండ్రిలో అరుణాచల ప్రేరిత పవిత్ర స్థలాన్ని నిర్మించండి.",
+    donateForLandTitle: "భక్తి, నిశ్శబ్దం మరియు స్వీయ-విచారణ",
+    donateForLandSubtitle: "రాజముండ్రిలో అరుణాచల ప్రేరిత పవిత్ర స్థలాన్ని నిర్మించండి.",
     
     // Teachings Page
     wisdom: "జ్ఞానం",

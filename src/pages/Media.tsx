@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Camera, Video, Play, X, ChevronDown } from "lucide-react";
 import Layout from "../components/Layout";
 import { useLanguage } from "@/hooks/useLanguageHook";
@@ -96,7 +97,18 @@ const Media = () => {
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   return (
-    <Layout>
+    <>
+      <Helmet>
+        <title>Media Gallery - Photos and Videos - Sri Arunachalaramana Charitable Trust</title>
+        <meta name="description" content="Explore our media gallery featuring photos and videos from spiritual events, charitable activities, and celebrations at Sri Arunachalaramana Charitable Trust." />
+        <meta name="keywords" content="media gallery, photos, videos, spiritual events, charitable activities, Ramana Maharshi celebrations" />
+        <link rel="canonical" href="https://arunachalaramana.org/media" />
+        <meta property="og:title" content="Media Gallery - Sri Arunachalaramana Charitable Trust" />
+        <meta property="og:description" content="Explore our media gallery featuring photos and videos from spiritual events and charitable activities." />
+        <meta property="og:url" content="https://arunachalaramana.org/media" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <Layout>
       {/* Hero Banner */}
       <section className="relative h-80 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e26612]/90 via-[#d45511]/80 to-[#a63d08]/80">
         <motion.div
@@ -268,6 +280,7 @@ const Media = () => {
         </div>
       )}
     </Layout>
+    </>
   );
 };
 
