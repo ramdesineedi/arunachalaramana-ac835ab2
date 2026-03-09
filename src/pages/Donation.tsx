@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Heart, Send, Building2, CreditCard, Copy, Check, HelpCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/hooks/useLanguageHook";
@@ -116,7 +117,18 @@ const Donation = () => {
   }, [testCarouselApi]);
 
   return (
-    <Layout>
+    <>
+      <Helmet>
+        <title>Donate - Support Sri Arunachalaramana Charitable Trust</title>
+        <meta name="description" content="Make a donation to Sri Arunachalaramana Charitable Trust. Support our charitable activities including food donation, temple construction, and spiritual education." />
+        <meta name="keywords" content="donate, charity, food donation, temple construction, spiritual education, tax benefits, Sri Arunachalaramana Charitable Trust" />
+        <link rel="canonical" href="https://arunachalaramana.org/donation" />
+        <meta property="og:title" content="Donate - Support Sri Arunachalaramana Charitable Trust" />
+        <meta property="og:description" content="Make a donation to support our charitable activities including food donation, temple construction, and spiritual education." />
+        <meta property="og:url" content="https://arunachalaramana.org/donation" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <Layout>
       {/* Hero */}
       <section className="bg-card">
         <div className="container px-0 mx-auto text-center">
@@ -544,6 +556,7 @@ const Donation = () => {
     </div>
   </section>
     </Layout>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import Layout from "../components/Layout";
 import { useLanguage } from "@/hooks/useLanguageHook";
 import { getTranslation } from "@/lib/translations";
@@ -49,7 +50,18 @@ const Projects = () => {
   const { language } = useLanguage();
 
   return (
-    <Layout>
+    <>
+      <Helmet>
+        <title>Projects & Charitable Activities - Sri Arunachalaramana Charitable Trust</title>
+        <meta name="description" content="Discover our charitable projects including temple construction, food donation campaigns, spiritual education, and community service initiatives." />
+        <meta name="keywords" content="charitable projects, temple construction, food donation, spiritual education, community service, Ramana Maharshi" />
+        <link rel="canonical" href="https://arunachalaramana.org/projects" />
+        <meta property="og:title" content="Projects & Charitable Activities - Sri Arunachalaramana Charitable Trust" />
+        <meta property="og:description" content="Discover our charitable projects including temple construction, food donation campaigns, and community service initiatives." />
+        <meta property="og:url" content="https://arunachalaramana.org/projects" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <Layout>
       {/* Hero Banner */}
       <section className="relative h-80 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e26612]/90 via-[#d45511]/80 to-[#a63d08]/80">
         <motion.div
@@ -102,6 +114,7 @@ const Projects = () => {
         </div>
       </section>
     </Layout>
+    </>
   );
 };
 
