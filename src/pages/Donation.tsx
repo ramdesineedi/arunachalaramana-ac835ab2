@@ -122,79 +122,68 @@ const Donation = () => {
         <title>Donate - Support Sri Arunachalaramana Charitable Trust</title>
         <meta name="description" content="Make a donation to Sri Arunachalaramana Charitable Trust. Support our charitable activities including food donation, temple construction, and spiritual education." />
         <meta name="keywords" content="donate, charity, food donation, temple construction, spiritual education, tax benefits, Sri Arunachalaramana Charitable Trust" />
-        <link rel="canonical" href="https://arunachalaramana.org/donation" />
+        <link rel="canonical" href="https://sriarunachalaramana.indonation" />
         <meta property="og:title" content="Donate - Support Sri Arunachalaramana Charitable Trust" />
         <meta property="og:description" content="Make a donation to support our charitable activities including food donation, temple construction, and spiritual education." />
-        <meta property="og:url" content="https://arunachalaramana.org/donation" />
+        <meta property="og:url" content="https://sriarunachalaramana.indonation" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Layout>
-      {/* Hero */}
-      <section className="bg-card">
-        <div className="container px-0 mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 w-full flex items-center justify-center px-4">
-                <div>
-                <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 mt-8 lg:mt-0">
-                  {getTranslation("annaprasadam", language)}
-                </h1>
-                 <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-                  {getTranslation("donationDesc", language)}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-                        <a
-                          href="#manual-payment"
-                          className="px-8 py-3 bg-primary text-primary-foreground font-body font-medium rounded-lg hover:opacity-90 transition-opacity mb-8">
-                          {getTranslation("donateNow", language)}
-                        </a>
-                      </div>
+        {/* Hero Banner */}
+      <section className="relative h-80 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e26612]/90 via-[#d45511]/80 to-[#a63d08]/80">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative text-center px-4 max-w-4xl"
+        >
+          <p className="text-white/90 font-body text-sm tracking-[0.3em] uppercase mb-4">
+            {getTranslation("annaprasadam", language)}
+          </p>
+          <h1 className="font-display text-3xl md:text-5xl lg:text-5xl font-bold text-white leading-tight mb-4">
+            {getTranslation("supportUs", language)}
+          </h1>
+          <p className="text-white font-body text-lg max-w-2xl mx-auto italic">{getTranslation("donationDesc", language)}</p>
+        </motion.div>
+      </section>
+
+      <section>
+        <div className="bg-landing-background py-20">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="space-y-8">
+              
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
+                {getTranslation("donateOnline", language)}
+              </h2>
+
+              <div className="border-4 p-4 md:p-7 rounded-xl max-w-4xl mx-auto relative text-landing-primary border-landing-primary">
+
+                <div className="prose prose-sm sm:prose-base prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-h5:text-lg max-w-full w-full text-justify font-medium text-sm md:text-base text-landing-primary">
+                  <p className="text-center font-semibold text-black font-body text-2xl mb-8 max-w-2xl mx-auto pl-8 pr-8">
+                  “{getTranslation("donateQuote", language)}”
+                  </p>
+                  <p className="text-center text-black">
+                    {getTranslation("donateQuotePara1", language)}
+                  </p>
+                  <p className="text-center text-black">
+                    {getTranslation("donateQuotePara2", language)}
+                  </p>
                 </div>
-              </div>
-              <div className="md:w-1/2 w-full">
-              <img src={meal1} alt="Payment QR Code" className="h-auto mx-auto"></img>
+                {/* Top Quote Icon */}
+                <div className="absolute left-4 top-5 text-4xl text-landing-primary bg-[#faf8f5]">
+                  <svg stroke="currentColor" fill="#e26612" stroke-width="0" viewBox="0 0 24 24" className="text-landing-primary border-landing-primary bg-landing-background" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"></path></svg>
+                </div>
+
+                {/* Bottom Quote Icon */}
+                <div className="absolute right-4 bottom-4 rotate-180 text-4xl text-landing-primary bg-[#faf8f5]">
+                  <svg stroke="currentColor" fill="#e26612" stroke-width="0" viewBox="0 0 24 24" className="text-landing-primary border-landing-primary bg-landing-background" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"></path></svg>
+                </div>
+
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
-      <section>
-  <div className="bg-landing-background py-20">
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="space-y-8">
-        
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
-          {getTranslation("donateOnline", language)}
-        </h2>
-
-        <div className="border-4 p-4 md:p-7 rounded-xl max-w-4xl mx-auto relative text-landing-primary border-landing-primary">
-
-          <div className="prose prose-sm sm:prose-base prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-h5:text-lg max-w-full w-full text-justify font-medium text-sm md:text-base text-landing-primary">
-            <p className="text-center font-semibold text-black font-body text-2xl mb-8 max-w-2xl mx-auto pl-8 pr-8">
-             “{getTranslation("donateQuote", language)}”
-            </p>
-            <p className="text-center text-black">
-              {getTranslation("donateQuotePara1", language)}
-            </p>
-            <p className="text-center text-black">
-              {getTranslation("donateQuotePara2", language)}
-            </p>
-          </div>
-          {/* Top Quote Icon */}
-          <div className="absolute left-4 top-5 text-4xl text-landing-primary bg-[#faf8f5]">
-            <svg stroke="currentColor" fill="#e26612" stroke-width="0" viewBox="0 0 24 24" className="text-landing-primary border-landing-primary bg-landing-background" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"></path></svg>
-          </div>
-
-          {/* Bottom Quote Icon */}
-          <div className="absolute right-4 bottom-4 rotate-180 text-4xl text-landing-primary bg-[#faf8f5]">
-            <svg stroke="currentColor" fill="#e26612" stroke-width="0" viewBox="0 0 24 24" className="text-landing-primary border-landing-primary bg-landing-background" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"></path></svg>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <section className="py-20 bg-card">
   <div className="container mx-auto px-4 max-w-5xl">
     <div className="grid grid-cols-1 lg:grid-cols-1">
@@ -243,7 +232,7 @@ const Donation = () => {
     {item.title}
   </h3>
 
-  <p className="font-display text-lg font-bold text-amber-700 whitespace-nowrap">
+  <p className="font-body font-bold text-amber-700 whitespace-nowrap">
     {item.price}
   </p>
 </div>
@@ -316,7 +305,7 @@ const Donation = () => {
                 <h3 className="font-body font-bold text-foreground group-hover:text-primary transition-colors max-w-[70%]">
                   {item.title}
                 </h3>
-                <p className="font-display text-lg font-bold text-orange-700">
+                <p className="font-body  font-bold text-orange-700">
                   {item.price}
                 </p>
               </div>

@@ -25,10 +25,10 @@ const Contact = () => {
         <title>Contact Us - Sri Arunachalaramana Charitable Trust</title>
         <meta name="description" content="Get in touch with Sri Arunachalaramana Charitable Trust. Contact us for inquiries about our charitable activities, donations, or spiritual guidance." />
         <meta name="keywords" content="contact, Sri Arunachalaramana Charitable Trust, donations, spiritual guidance, Rajahmundry" />
-        <link rel="canonical" href="https://arunachalaramana.org/contact" />
+        <link rel="canonical" href="https://sriarunachalaramana.incontact" />
         <meta property="og:title" content="Contact Us - Sri Arunachalaramana Charitable Trust" />
         <meta property="og:description" content="Get in touch with Sri Arunachalaramana Charitable Trust for inquiries about our charitable activities and donations." />
-        <meta property="og:url" content="https://arunachalaramana.org/contact" />
+        <meta property="og:url" content="https://sriarunachalaramana.incontact" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Layout>

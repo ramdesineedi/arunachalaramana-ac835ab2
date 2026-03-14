@@ -55,10 +55,10 @@ const Projects = () => {
         <title>Projects & Charitable Activities - Sri Arunachalaramana Charitable Trust</title>
         <meta name="description" content="Discover our charitable projects including temple construction, food donation campaigns, spiritual education, and community service initiatives." />
         <meta name="keywords" content="charitable projects, temple construction, food donation, spiritual education, community service, Ramana Maharshi" />
-        <link rel="canonical" href="https://arunachalaramana.org/projects" />
+        <link rel="canonical" href="https://sriarunachalaramana.inprojects" />
         <meta property="og:title" content="Projects & Charitable Activities - Sri Arunachalaramana Charitable Trust" />
         <meta property="og:description" content="Discover our charitable projects including temple construction, food donation campaigns, and community service initiatives." />
-        <meta property="og:url" content="https://arunachalaramana.org/projects" />
+        <meta property="og:url" content="https://sriarunachalaramana.inprojects" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Layout>

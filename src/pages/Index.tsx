@@ -30,10 +30,10 @@ const Index = () => {
         <title>Sri Arunachalaramana Charitable Trust - Home</title>
         <meta name="description" content="Welcome to Sri Arunachalaramana Charitable Trust. Discover the teachings of Bhagavan Sri Ramana Maharshi and support our charitable activities including temple construction, food donation, and spiritual education in Rajahmundry." />
         <meta name="keywords" content="Sri Arunachalaramana Charitable Trust, Ramana Maharshi, spiritual teachings, charity, temple construction, food donation, Rajahmundry" />
-        <link rel="canonical" href="https://arunachalaramana.org/" />
+        <link rel="canonical" href="https://sriarunachalaramana.in" />
         <meta property="og:title" content="Sri Arunachalaramana Charitable Trust - Home" />
         <meta property="og:description" content="Welcome to Sri Arunachalaramana Charitable Trust. Discover the teachings of Bhagavan Sri Ramana Maharshi and support our charitable activities." />
-        <meta property="og:url" content="https://arunachalaramana.org/" />
+        <meta property="og:url" content="https://sriarunachalaramana.in" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -41,7 +41,7 @@ const Index = () => {
             "@type": "Organization",
             "name": "Sri Arunachalaramana Charitable Trust",
             "url": "https://arunachalaramana.org",
-            "logo": "https://arunachalaramana.org/assets/logo-icon.png",
+            "logo": "https://sriarunachalaramana.inassets/logo-icon.png",
             "description": "Charitable Trust dedicated to the teachings of Bhagavan Sri Ramana Maharshi. Serving the community through spiritual education, food donation, and charitable activities.",
             "address": {
               "@type": "PostalAddress",

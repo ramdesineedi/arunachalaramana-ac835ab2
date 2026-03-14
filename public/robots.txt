@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://arunachalaramana.org/sitemap.xml
+Sitemap: https://sriarunachalaramana.insitemap.xml

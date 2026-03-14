@@ -39,7 +39,7 @@ export const translations = {
     vedicEducation: "Vedic Education",
     vedicEducationDesc: "A University of Vedic Education to provide the next generation the values of Indian traditions and culture.",
     foodDonation: "Food Donation",
-    foodDonationDesc: "\"Food is equal to Almighty\" — providing food as Nithya Annaprasadham scheme to those in need.",
+    foodDonationDesc: "\"Food is equal to Almighty\" — providing food as Nithya Annaprasadham",
     ramanaAshram: "Ramana Ashram",
     ramanaAshramDesc: "Construct an Ashram in the name of Guru Sri Ramana Maharshi, guiding us towards the right path.",
     gosala: "Gosala (Cow Shelter)",
@@ -152,7 +152,7 @@ export const translations = {
     media: "మీడియా",
     projects: "ప్రాజెక్ట్లు",
     contact: "మమ్మల్లను సంప్రదించండి",
-    donation: "దానం",
+    donation: "విరాళం",
     charityTrust: "చరిటీ ట్రస్ట్",
     
     footerPara: "భగవాన్ శ్రీ రమణ మహర్షి బోధనలకు అంకితమైన చారిటబుల్ ట్రస్ట్. ఆధ్యాత్మిక విద్య, అన్నదానం మరియు ధార్మిక కార్యకలాపాల ద్వారా సమాజానికి సేవ చేయడం.",
