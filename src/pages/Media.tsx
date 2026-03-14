@@ -102,10 +102,10 @@ const Media = () => {
         <title>Media Gallery - Photos and Videos - Sri Arunachalaramana Charitable Trust</title>
         <meta name="description" content="Explore our media gallery featuring photos and videos from spiritual events, charitable activities, and celebrations at Sri Arunachalaramana Charitable Trust." />
         <meta name="keywords" content="media gallery, photos, videos, spiritual events, charitable activities, Ramana Maharshi celebrations" />
-        <link rel="canonical" href="https://arunachalaramana.org/media" />
+        <link rel="canonical" href="https://sriarunachalaramana.inmedia" />
         <meta property="og:title" content="Media Gallery - Sri Arunachalaramana Charitable Trust" />
         <meta property="og:description" content="Explore our media gallery featuring photos and videos from spiritual events and charitable activities." />
-        <meta property="og:url" content="https://arunachalaramana.org/media" />
+        <meta property="og:url" content="https://sriarunachalaramana.inmedia" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Layout>

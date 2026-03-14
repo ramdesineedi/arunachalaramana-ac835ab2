@@ -46,10 +46,10 @@ const Teachings = () => {
         <title>Teachings of Bhagavan Sri Ramana Maharshi - Sri Arunachalaramana Charitable Trust</title>
         <meta name="description" content="Explore the profound teachings of Bhagavan Sri Ramana Maharshi on self-enquiry, silence, and bhakti. Discover spiritual wisdom and guidance for seekers of truth." />
         <meta name="keywords" content="Ramana Maharshi teachings, self-enquiry, spiritual wisdom, meditation, silence, bhakti, Arunachala" />
-        <link rel="canonical" href="https://arunachalaramana.org/teachings" />
+        <link rel="canonical" href="https://sriarunachalaramana.inteachings" />
         <meta property="og:title" content="Teachings of Bhagavan Sri Ramana Maharshi" />
         <meta property="og:description" content="Explore the profound teachings of Bhagavan Sri Ramana Maharshi on self-enquiry, silence, and bhakti." />
-        <meta property="og:url" content="https://arunachalaramana.org/teachings" />
+        <meta property="og:url" content="https://sriarunachalaramana.inteachings" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Layout>
